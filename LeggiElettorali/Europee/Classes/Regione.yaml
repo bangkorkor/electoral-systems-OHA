@@ -1,0 +1,14 @@
+metaclasses:
+  - totals
+  - external
+
+external:
+  voti_liste: # espone i voti per le liste
+    columns:
+      - LISTA -> Lista
+      - VOTI_LISTA -> Voti
+  voti_cand:  # voti per i candidati
+    columns:
+      - Candidato
+      - PREFERENZE -> Voti
+

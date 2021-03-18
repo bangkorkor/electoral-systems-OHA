@@ -1,0 +1,48 @@
+metaclasses:
+  - external
+  - totals
+  - lanes
+
+external:
+  voti_uninominale:
+    columns:
+      - Candidato
+      - Lista
+      - Partito
+      - PartitoCollegato
+      - Voti
+
+totals_support:
+  get_vincente_uninominale:
+    source:
+      type: fun
+      name: self.get_voti_uninominale
+    type: transform
+    ops:
+      - type: dataframe
+        source:
+          type: fun
+          name: Commons.select_vincente_mattarellum
+
+lanes_propose:
+  seggi_collegiali:
+    source:
+      type: fun
+      name: self.get_voti_uninominale
+
+    distribution:
+      key: Partito
+      seats: 1
+      selector:
+              column: Voti
+              order: decreasing
+              take: 1
+    info:
+      - Voti
+
+lane:
+  uninominale:
+    node_type: only
+    order_number: 1
+    distribution: seggi_collegiali
+    info_name: Collegio    

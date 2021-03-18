@@ -1,0 +1,174 @@
+metaclasses:
+  - lanes
+  - superdivision
+  - totals
+  - external
+
+
+external:
+  seggi:
+    # I seggi assegnati
+    init: True
+    type: int
+  premio_maggioranza:
+    init: True
+    type: int
+  circoscrizioni:
+    init: True
+
+
+subdivisions:
+  circoscrizioni:
+    type: Circoscrizione
+    functions:
+      - name: liste
+        source:
+          totals: liste
+      - name: coalizioni
+        source:
+          totals: coalizioni
+      - name: regioniListe
+        source:
+          totals: regioniListe
+
+
+# LANES SECTION <------------------------------------- #
+
+lane:
+  lista:
+    node_type: head
+    order_number: 1
+    sub_level: Circoscrizione
+    info_name: Nazione
+    first_input: liste 
+    operations:
+      - collect_type: liste
+        ideal_distribution: $
+        corrector: Commons.correct_porcellum
+      - collect_type: partiti
+        ideal_distribution: $
+        corrector: Commons.correct_porcellum_partiti
+
+
+
+lanes_propose:
+
+  liste:
+    source:
+      type: fun
+      name: self.distribuisci_seggi
+      rename:
+        Votes: Voti
+        Seats: Seggi
+    distribution:
+      - Partito
+      - Seggi
+      - Coalizione
+      - VotiCoalizione
+    info:
+      - Voti
+  
+  partiti:
+    source:
+      type: fun
+      name: self.distribuisci_seggi
+      rename:
+        Votes: Voti
+        Seats: Seggi
+    distribution:
+      - Partito
+      - Seggi
+      - Coalizione
+    info:
+      - Voti
+
+
+# TOTALS SECTION <--------------------------------- #
+
+totals:
+
+  liste:
+    type: aggregate
+    source:
+      type: fun
+      name: self.subs_circoscrizioni_liste
+    columns:
+        - Partito
+        - Coalizione
+        - Voti
+    keys:
+      - Coalizione
+      - Partito
+    ops:
+      Voti: sum
+
+  coalizioni:
+    type: aggregate
+    source:
+      type: fun
+      name: self.subs_circoscrizioni_coalizioni
+    columns:
+        - Coalizione
+        - Voti
+    keys:
+      - Coalizione
+    ops:
+      Voti: sum
+    
+  regioniListe:
+    type: aggregate
+    source:
+      type: fun
+      name: self.subs_circoscrizioni_regioniListe
+    columns:
+        - Partito
+        - Regione
+        - Voti
+    keys:
+      - Partito
+      - Regione
+    ops:
+      Voti: sum
+
+
+totals_support:
+
+  distribuisci_seggi:
+    source:
+      totals: coalizioni
+      args:
+        - elette
+      rename:
+        Coalizione: Eleggibile
+        Voti: Votes
+    type: transform
+    ops:
+      - type: dataframe
+        source:
+          type: fun
+          name: Commons.distrib_porcellum
+          kwargs:
+            seats:
+              source:
+                type: fun
+                name: self.get_seggi
+            df_partiti_filtrato:
+              source:
+                totals: liste
+                args:
+                  - elette
+                rename:
+                  Partito: Eleggibile
+                  Voti: Votes
+            df_partiti_regioni:
+              source:
+                totals: regioniListe
+                args:
+                  - regione
+                rename:
+                  Partito: Eleggibile
+                  Voti: Votes
+            premio_maggioranza:
+              source:
+                type: fun
+                name: self.get_premio_maggioranza

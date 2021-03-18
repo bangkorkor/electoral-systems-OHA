@@ -1,0 +1,95 @@
+metaclasses:
+  - lanes
+  - superdivision
+  - totals
+  - external
+
+lane:
+  lista:
+    node_type: head
+    order_number: 1
+    sub_level: Circoscrizione
+    info_name: Nazione
+    first_input: liste # Distribuzione: quanti seggi ad ogni lista
+                              # Informazioni:
+                              #   Partito:
+                              #     + VotiPartito
+    operations:
+      - collect_type: liste # Alla propose dovrà essere passato:
+                            #     + Dizionari info generali
+                            #     + Distribuzione ideale
+                            # E restituirà:
+                            #     + Distribuzione
+                            #     + Per ogni partito nelle informazioni ci sarà il resto della divisione effettuata
+        ideal_distribution: $
+        corrector: Commons.correct_europee # Prende la distribuzione ideale e usa i resti per aggiungere seggi
+      - collect_type: candidati # Per ogni candidato tira su le informazioni di quante preferenze ha ricevuto
+        ideal_distribution: $
+        corrector: Commons.no_op # Una funzione che non fa' nulla
+        forward_distribution: True  # Invece di usare la distribuzione concordata con i livelli inferiori usa la
+                                    # distribuzione precedente. Questo mi permette di accumulare informazioni senza
+                                    # toccare la distribuzione di seggi
+
+lanes_propose:
+  liste:
+    # Applica d'hont ai seggi totali e alle liste che superano lo sbarramento
+    source:
+      type: fun
+      name: self.seggi_lista
+      rename:
+        Votes: Voti
+        Seats: Seggi
+
+    distribution:
+      - Partito
+      - Seggi
+    info:
+      - Voti
+
+external:
+  seggi:
+    # I seggi assegnati
+    init: True
+    type: int
+
+  circoscrizioni:
+    init: True
+
+subdivisions:
+  circoscrizioni:
+    # espone solo totals(liste)
+    type: Circoscrizione
+    functions:
+      - name: liste
+        source:
+          totals: liste
+totals:
+  liste:
+    type: aggregate
+    source:
+      type: fun
+      name: self.subs_circoscrizioni_liste
+    keys:
+      - Partito
+    ops:
+      Voti: sum
+
+totals_support:
+  seggi_lista:
+    source:
+      totals: liste
+      args:
+        - elette
+      rename:
+        Voti: Votes
+    type: transform
+    ops:
+      - type: dataframe
+        source:
+          type: fun
+          name: Commons.distrib_europee
+          kwargs:
+            seats:
+              source:
+                type: fun
+                name: self.get_seggi

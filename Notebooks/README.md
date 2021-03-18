@@ -1,0 +1,1 @@
+Questa cartella contiene dei notebook jupyter usati da Lorenzo Ruffati, originario creatore del framework, per testare alcune metaclasse. Non è detto che siano aggiornati.

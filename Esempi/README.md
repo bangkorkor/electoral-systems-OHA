@@ -1,0 +1,1 @@
+In questa cartella sono presenti alcuni esempi preparati da Lorenzo Ruffati, originario creatore del framework. Non è sicuro che funzionino.

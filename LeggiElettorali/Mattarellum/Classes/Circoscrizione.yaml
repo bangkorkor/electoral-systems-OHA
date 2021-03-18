@@ -1,0 +1,78 @@
+metaclasses:
+  - external
+  - superdivision
+  - totals
+  - lanes
+
+external:
+  seggi_plurinominale:
+    init: True
+  collegi:
+    init: True
+  voti_plurinominale:
+    columns:
+      - Partito
+      - Voti
+
+subdivisions:
+  collegi:
+    type: Collegio
+    functions:
+      - name: get_vincente_uninominale
+        source: 
+          type: fun
+          name: self.get_vincente_uninominale
+
+totals:
+  aggrega_vincenti_collegi: #restituisce |PartitoCollegato|VotiVincenti| a liv. di circoscrizione
+    type: aggregate
+    source:
+      type: fun
+      name: self.subs_collegi_get_vincente_uninominale
+    keys:
+      - PartitoCollegato
+    ops:
+      VotiVincenti: sum
+
+totals_support:
+  # restituisce |Partito|Voti|Cifra| a liv. di circoscrizione
+  get_risultati:
+    source: 
+      totals: aggrega_vincenti_collegi
+    type: transform
+    ops:
+      - type: dataframe
+        source:
+          type: fun
+          name: Commons.merge_votivincenti_mattarellum
+          kwargs:
+            voti_proporzionale:
+              source:
+                type: fun
+                name: self.get_voti_plurinominale
+
+lanes_propose:
+  seggi_circoscrizionali:
+    source:              
+      type: fun                         
+      name: Commons.assegna_seggi_circoscrizione_mattarellum 
+      kwargs:
+        district_votes:
+          source:
+            type: fun
+            name: self.get_risultati # da |Partito|Voti|Cifra| a livello di circoscrizione
+        seggi_circoscrizione:
+          source:
+            type: fun
+            name: self.get_seggi_plurinominale
+    distribution:
+      - Partito
+      - Seggi
+    info: 
+      - Resto
+      - SeggiCircoscrizione
+
+lane:
+  plurinominale:
+    node_type: tail
+    info_name: Circoscrizione
