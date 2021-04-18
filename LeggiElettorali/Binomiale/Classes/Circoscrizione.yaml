@@ -1,0 +1,145 @@
+metaclasses:
+  - superdivision
+  - totals
+  - lanes
+  - external
+
+# formazione della classe Circoscrizione #
+
+external:
+  regioni:
+    init: True
+  numero_seggi:
+    init: True
+
+
+subdivisions:
+  regioni:
+    type: Regione
+    functions:
+      - name: liste
+        source:
+          type: fun
+          name: self.get_voti_liste
+      - name: coalizioni
+        source:
+          type: fun
+          name: self.get_voti_coalizioni
+      - name: regioniListe
+        source:
+          type: fun
+          name: self.get_voti_regionali
+
+
+
+# SEZIONE LANES <--------------------------------------- #
+
+
+lane:
+  lista:
+    node_type: tail
+    info_name: Circoscrizione
+
+
+lanes_propose:
+  # proposta di distribuzione nelle circoscrizione per le liste e coalizioni #
+  liste:
+    source:
+      type: fun
+      name: commons.divisione_circoscrizionale_seggi
+      kwargs:
+        district_votes:
+          source:
+            totals: liste
+        seggi:
+          source:
+            type: fun
+            name: self.get_numero_seggi
+    distribution:
+      - Eleggibile
+      - Seggi
+      - Voti_Circ
+      - Resto
+      - Resto_Usato
+    info:
+      - Indice
+  
+  # proposta di distribuzione nelle circoscrizione per i partiti #
+  partiti:
+    source:
+      type: fun
+      name: commons.divisione_circoscrizionale_partiti
+      kwargs:
+        district_votes:
+          source:
+            totals: liste
+            args:
+              - elette
+        seggi:
+          source:
+            type: fun
+            name: self.get_numero_seggi
+        distretto:
+          source:
+            type: att
+            name: self.name
+    distribution:
+      - Partito
+      - Seggi
+      - Coalizione
+      - Voti
+      - Resto
+      - Resto_Usato
+    info:
+      - Resto
+
+
+
+# SEZIONE TOTALS <--------------------------------------- #
+
+totals:
+  liste:
+    type: aggregate
+    source:
+      type: fun
+      name: self.subs_regioni_liste
+      columns:
+        - Lista -> Partito
+        - Coalizione
+        - Voti
+    keys:
+      - Partito
+      - Coalizione
+    ops:
+      Voti: sum
+
+  coalizioni:
+    type: aggregate
+    source:
+      type: fun
+      name: self.subs_regioni_coalizioni
+      columns:
+        - Coalizione
+        - Voti
+    keys:
+      - Coalizione
+    ops:
+      Voti: sum
+    
+  regioniListe:
+    type: aggregate
+    source:
+      type: fun
+      name: self.subs_regioni_regioniListe
+      columns:
+      - Lista -> Partito
+      - Regione
+      - Voti
+    keys:
+      - Partito
+      - Regione
+    ops:
+      Voti: sum
+
+  
+
