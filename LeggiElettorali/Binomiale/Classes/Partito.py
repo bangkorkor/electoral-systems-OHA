@@ -59,7 +59,7 @@ class Partito(metaclass=comb_p, **conf):
             return False"""
 
      
-        
+        """
         # filtro che implementa lo sbarramenti a livello nazionale per i partiti,
         # controllando se fanno parte di una coalizione che ha superato la rispettiva
         # soglia di sbarramento.
@@ -93,6 +93,7 @@ class Partito(metaclass=comb_p, **conf):
             # allora controllo direttamente se ha passato il 4% dei voti
             # validi #
             return tot_voti_partito > tot_voti * 0.04
+        """
 
         return True
 

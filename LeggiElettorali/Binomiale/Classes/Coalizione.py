@@ -28,7 +28,7 @@ class Coalizione(metaclass=comb_p, **conf):
 
         # controllo il numero dei voti solo a livello nazione perchè non ci sono
         # filtri a livello regionale per le coalizioni #
-        if sbarramenti[0] == 'elette' and district.type == 'Nazione':
+        if district.type == 'Nazione':
             
             #print("eseguo filter di coalizione in ", district.type)
 
@@ -71,12 +71,5 @@ class Coalizione(metaclass=comb_p, **conf):
                 partiti_spettanti_seggi.append(partito)
                 prendi_miglior_perdente = False
 
-        # prendo partiti che hanno superato soglia regionale in trentino e friuli
-        # 20% voti regionali #
-        for partito in percentuali_regionali_partiti.keys() :
-
-            if percentuali_regionali_partiti.get(partito) > 20. :
-                if partito not in partiti_spettanti_seggi :
-                    partiti_spettanti_seggi.append(partito)
 
         return partiti_spettanti_seggi
