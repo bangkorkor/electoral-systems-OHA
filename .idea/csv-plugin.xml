@@ -87,6 +87,83 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\LeggiElettorali\Binomiale\Classes\Nazione.yaml">
+          <value>
+            <Attribute>
+              <option name="separator" value=":" />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\LeggiElettorali\Binomiale\Data\Circoscrizione_Estera\voti_estero.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\LeggiElettorali\Binomiale\Data\Regione\voti_regionali.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\LeggiElettorali\Binomiale\Data\Valle_Aosta\voti_valle_d_aosta.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\LeggiElettorali\Europee\Classes\ex_naz.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\LeggiElettorali\Europee\Data\Regione\voti_cand.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\LeggiElettorali\Europee\Data\Regione\voti_liste.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\LeggiElettorali\Porcellum\Data\Regione\voti_coalizioni.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\LeggiElettorali\Porcellum\Data\Regione\voti_liste.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\LeggiElettorali\Porcellum\Data\Regione\voti_regionali.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\LeggiElettorali\Porcellum\Data\Valle_Aosta\voti_valle_d_aosta.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
       </map>
     </option>
   </component>
