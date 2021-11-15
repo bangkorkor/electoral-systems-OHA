@@ -4,6 +4,12 @@ Framework per l'elaborazione di sistemi elettorali
 
 ## Modo d'uso
 
+Installare le dipendenze con
+```shell script
+pip install -r requirements.txt
+```
+
+
 Creare una cartella in Electoral Laws/nome_legge con la seguente struttura:
 + Data
 + Instances
