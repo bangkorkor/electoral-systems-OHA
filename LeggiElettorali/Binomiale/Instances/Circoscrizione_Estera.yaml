@@ -2,19 +2,9 @@
   nome:
   - 'EUROPA'
   numero_seggi:
-  - 5
-'AMERICA MERIDIONALE':
+  - 2
+'RESTO DEL MONDO':
   nome:
-  - 'AMERICA MERIDIONALE'
-  numero_seggi:
-  - 4
-'AMERICA SETTENTRIONALE E CENTRALE':
-  nome:
-  - 'AMERICA SETTENTRIONALE E CENTRALE'
+  - 'RESTO DEL MONDO'
   numero_seggi:
   - 2
-'AFRICA ASIA OCEANIA ANTARTIDE':
-  nome:
-  - 'AFRICA ASIA OCEANIA ANTARTIDE'
-  numero_seggi:
-  - 1
