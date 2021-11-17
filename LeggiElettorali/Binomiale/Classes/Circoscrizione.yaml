@@ -1,3 +1,5 @@
+# Circoscrizione plurinominale
+
 metaclasses:
   - superdivision
   - totals
@@ -9,21 +11,19 @@ metaclasses:
 external:
   seggi_plurinominale:
     init: True
-  collegi:
-    init: True
   voti_plurinominale:
     columns:
-      - Partito
+      - Coalizione
       - Voti
 
-subdivisions:
+"""subdivisions:
   collegi:
     type: Collegio
     functions:
       - name: get_vincente_uninominale
         source:
           type: fun
-          name: self.get_vincente_uninominale
+          name: self.get_vincente_uninominale"""
 
 # SEZIONE LANES <--------------------------------------- #
 
