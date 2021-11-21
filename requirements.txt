@@ -2,10 +2,10 @@ pyyaml
 pandas
 numpy
 matplotlib
-multiprocessing
 os-sys
 importlib
 argparse
 requires.io
 inspect.it
 plotly
+multiprocess
