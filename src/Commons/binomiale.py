@@ -117,10 +117,43 @@ def binomiale_estero(*a, data, **kwargs):
     
     return dataframe_estero
 
+
+def binomiale_italia(*a, data, **kwargs):
+    dataframe_italia = data.copy()
+
+    dataframe_italia = dataframe_italia.sort_values(['Regione', 'Provincia', 'Voti'], ascending = (True, True, False))
+    print(dataframe_italia)
+
+    enti = list(set(dataframe_italia["Provincia"]))
+    enti.sort()
+    print(enti)
+
+    liste = dataframe_italia.groupby(['Provincia'])['Partito'].apply(list)
+    voti = dataframe_italia.groupby(['Provincia'])['Voti'].apply(list)
+    print(liste)
+    print(voti)
+
+    dataframe_italia = pd.DataFrame(columns = ['Provincia', 'Partito', 'Voti', 'Seggi'])
+    
+    for ente in enti:
+
+        if (voti[ente][0] < voti[ente][1] * 2):
+            dataframe_italia = dataframe_italia.append({'Provincia': ente, 'Partito': liste[ente][0], 'Voti': voti[ente][0], 'Seggi': 1}, ignore_index=True)
+            dataframe_italia = dataframe_italia.append({'Provincia': ente, 'Partito': liste[ente][1], 'Voti': voti[ente][1], 'Seggi': 1}, ignore_index=True)
+        else:
+            dataframe_italia = dataframe_italia.append({'Provincia': ente, 'Partito': liste[ente][0], 'Voti': voti[ente][0], 'Seggi': 2}, ignore_index=True)           
+
+
+    # print(dataframe_italia)
+    
+    return dataframe_italia
+
+
 # file1 = pd.read_csv('/home/poliradio/AleZito/SimulatoreSistemiElettorali-2/LeggiElettorali/Binomiale/Data/Circoscrizione_Estera/voti_estero.csv')
 file1 = pd.read_csv('/home/alessandro/Documents/PoliMi/SimulatoreSistemiElettorali-2/LeggiElettorali/Binomiale/Data/Circoscrizione_Estera/voti_estero.csv')
-file2= pd.read_csv('/home/alessandro/Documents/PoliMi/SimulatoreSistemiElettorali-2/LeggiElettorali/Binomiale/Data/Valle_Aosta/voti_valle_d_aosta.csv')
+file2 = pd.read_csv('/home/alessandro/Documents/PoliMi/SimulatoreSistemiElettorali-2/LeggiElettorali/Binomiale/Data/Valle_Aosta/voti_valle_d_aosta.csv')
+file3 = pd.read_csv('/home/alessandro/Documents/PoliMi/SimulatoreSistemiElettorali-2/LeggiElettorali/Binomiale/Data/Regione/voti_province.csv')
 
 
-data = file2.copy()
-binomiale_valle_daosta(data = data)
+data = file3.copy()
+binomiale_italia(data = data)
