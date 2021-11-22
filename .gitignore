@@ -130,3 +130,6 @@ dmypy.json
 
 # Logs
 logs
+
+# Temp .xslx file
+./LeggiElettorali/Binomiale/Data/Regione/voti_province.xslx
