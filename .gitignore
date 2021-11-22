@@ -132,4 +132,4 @@ dmypy.json
 logs
 
 # Temp .xslx file
-./LeggiElettorali/Binomiale/Data/Regione/voti_province.xslx
+./LeggiElettorali/Binomiale/Data/Regione/voti_province.xlsx
