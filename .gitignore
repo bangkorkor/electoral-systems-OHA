@@ -131,5 +131,5 @@ dmypy.json
 # Logs
 logs
 
-# Temp .xslx file
+# .xslx file
 *.xlsx
