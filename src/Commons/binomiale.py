@@ -10,16 +10,45 @@ import numpy as np
 import matplotlib.pyplot as plt
 import sys
 
+dataset_finale = pd.DataFrame(columns = ['Ente', 'Coalizione', 'Partito', 'Voti', 'Seggi'])
+associazioni = {}
+
+
+def dividi_partiti(*a, data, **kwargs):
+    dataframe = data.copy()
+    for index, row in dataframe.iterrows():
+        if row['Partito'] not in associazioni:
+            associazioni[row['Partito']] = row['Coalizione']
+
+
+def input_valle_daosta(*a, data, **kwargs):
+    dataframe = data.copy()
+    for index, row in dataframe.iterrows():
+        dataset_finale.append({'Ente': row['Ente'], 'Coalizione': row['Lista'], 'Partito': row['Lista'], 'Voti': row['Voti'], 'Seggi': 0})
+
+
+def input_italia(*a, data, **kwargs):
+    dataframe = data.copy()
+    for index, row in dataframe.iterrows():
+        dataset_finale.append({'Ente': row['Ente'], 'Coalizione': row['Coalizione'], 'Partito': row['Partito'], 'Voti': row['Voti'], 'Seggi': 0})
+
+
+def input_estero(*a, data, **kwargs):
+    dataframe = data.copy()
+    for index, row in dataframe.iterrows():
+        dataset_finale.append({'Ente': row['Ente'], 'Coalizione': row['Coalizione'], 'Partito': row['Partito'], 'Voti': row['Voti'], 'Seggi': 0})
+
+
 
 def binomiale_valle_daosta(*a, data, **kwargs):
     dataframe_aosta = data.copy()
 
-    enti = list(set(dataframe_aosta["Regione"]))
+    enti = list(set(dataframe_aosta['Ente']))
     enti.sort()
     print(enti)
 
-    liste = dataframe_aosta.groupby(['Regione'])['Lista'].apply(list)
-    voti = dataframe_aosta.groupby(['Regione'])['Voti'].apply(list)
+    liste = dataframe_aosta.groupby(['Ente'])['Lista'].apply(list)
+    voti = dataframe_aosta.groupby(['Ente'])['Voti'].apply(list)
 
     dataframe_aosta = pd.DataFrame(columns = ['Ente', 'Lista', 'Voti', 'Seggi'])
 
@@ -92,7 +121,7 @@ def binomiale_estero(*a, data, **kwargs):
     dataframe_estero = data.copy()
     dataframe_estero['Seggi'] = 0
 
-    enti = list(set(dataframe_estero["Ente"]))
+    enti = list(set(dataframe_estero['Ente']))
     enti.sort()
     print(enti)
 
@@ -121,39 +150,60 @@ def binomiale_estero(*a, data, **kwargs):
 def binomiale_italia(*a, data, **kwargs):
     dataframe_italia = data.copy()
 
-    dataframe_italia = dataframe_italia.sort_values(['Regione', 'Provincia', 'Voti'], ascending = (True, True, False))
+    dataframe_italia = dataframe_italia.sort_values(['Regione', 'Ente', 'Voti'], ascending = (True, True, False))
     print(dataframe_italia)
 
-    enti = list(set(dataframe_italia["Provincia"]))
+    enti = list(set(dataframe_italia['Ente']))
     enti.sort()
     print(enti)
 
-    liste = dataframe_italia.groupby(['Provincia'])['Partito'].apply(list)
-    voti = dataframe_italia.groupby(['Provincia'])['Voti'].apply(list)
+    liste = dataframe_italia.groupby(['Ente'])['Partito'].apply(list)
+    voti = dataframe_italia.groupby(['Ente'])['Voti'].apply(list)
     print(liste)
     print(voti)
 
-    dataframe_italia = pd.DataFrame(columns = ['Provincia', 'Partito', 'Voti', 'Seggi'])
+    dataframe_italia = pd.DataFrame(columns = ['Ente', 'Partito', 'Voti', 'Seggi'])
     
     for ente in enti:
 
         if (voti[ente][0] < voti[ente][1] * 2):
-            dataframe_italia = dataframe_italia.append({'Provincia': ente, 'Partito': liste[ente][0], 'Voti': voti[ente][0], 'Seggi': 1}, ignore_index=True)
-            dataframe_italia = dataframe_italia.append({'Provincia': ente, 'Partito': liste[ente][1], 'Voti': voti[ente][1], 'Seggi': 1}, ignore_index=True)
+            dataframe_italia = dataframe_italia.append({'Ente': ente, 'Partito': liste[ente][0], 'Voti': voti[ente][0], 'Seggi': 1}, ignore_index=True)
+            dataframe_italia = dataframe_italia.append({'Ente': ente, 'Partito': liste[ente][1], 'Voti': voti[ente][1], 'Seggi': 1}, ignore_index=True)
         else:
-            dataframe_italia = dataframe_italia.append({'Provincia': ente, 'Partito': liste[ente][0], 'Voti': voti[ente][0], 'Seggi': 2}, ignore_index=True)           
+            dataframe_italia = dataframe_italia.append({'Ente': ente, 'Partito': liste[ente][0], 'Voti': voti[ente][0], 'Seggi': 2}, ignore_index=True)           
 
 
-    # print(dataframe_italia)
+    print(dataframe_italia)
     
     return dataframe_italia
 
 
-# file1 = pd.read_csv('/home/poliradio/AleZito/SimulatoreSistemiElettorali-2/LeggiElettorali/Binomiale/Data/Circoscrizione_Estera/voti_estero.csv')
+
+def binomiale_assegna_seggi(*a, dataframe_italia, **kwargs):
+    
+    dataframe_finale = pd.DataFrame(columns = ['Coalizione', 'Partito', 'Seggi'])
+
+    
+    partiti = list(set(dataframe_italia["Partito"]))
+    partiti.sort()
+    print(partiti)
+
+    seggi = dataframe_italia.groupby(['Partito'])['Seggi'].apply(list)
+    print(seggi)
+    
+    for partito in partiti:
+        sum(seggi[partito])
+        dataframe_finale = dataframe_finale.append({'Coalizione': ente, 'Partito': liste[ente][0], 'Voti': voti[ente][0], 'Seggi': 1}, ignore_index=True)
+
+
 file1 = pd.read_csv('/home/alessandro/Documents/PoliMi/SimulatoreSistemiElettorali-2/LeggiElettorali/Binomiale/Data/Circoscrizione_Estera/voti_estero.csv')
 file2 = pd.read_csv('/home/alessandro/Documents/PoliMi/SimulatoreSistemiElettorali-2/LeggiElettorali/Binomiale/Data/Valle_Aosta/voti_valle_d_aosta.csv')
 file3 = pd.read_csv('/home/alessandro/Documents/PoliMi/SimulatoreSistemiElettorali-2/LeggiElettorali/Binomiale/Data/Regione/voti_province.csv')
 
 
 data = file3.copy()
-binomiale_italia(data = data)
+dividi_partiti(data = data)
+sys.exit()
+dataframe_italia = binomiale_italia(data = data)
+binomiale_assegna_seggi(dataframe_italia = dataframe_italia)
+
