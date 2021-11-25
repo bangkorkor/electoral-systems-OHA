@@ -200,11 +200,8 @@ def binomiale_assegna_seggi_italia(*a, dataframe_italia, **kwargs):
     for coalizione in coalizioni:
         seggi_assegnati[coalizione] = dataframe_italia.loc[dataframe_italia['Coalizione'] == coalizione, 'Seggi'].sum()
         
-       
-    
-
-
     print(seggi_assegnati)
+
 
 
 
