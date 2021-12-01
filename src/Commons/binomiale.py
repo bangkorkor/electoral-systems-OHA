@@ -182,26 +182,40 @@ def binomiale_italia(*a, data, **kwargs):
             dataframe_italia = dataframe_italia.append({'Ente': ente, 'Coalizione': coalizioni[ente][0], 'Partito': partiti[ente][0], 'Voti': voti[ente][0], 'Seggi': 2}, ignore_index=True)           
 
 
-    print(dataframe_italia)
+    # print(dataframe_italia)
     
     return dataframe_italia
 
 
 
-def binomiale_assegna_seggi_italia(*a, dataframe_italia, **kwargs):
+def binomiale_assegna_seggi(*a, dataframe_italia, dataframe_aosta, dataframe_estero, **kwargs):
 
     seggi_assegnati = {}
     dataframe_italia = dataframe_italia.sort_values(['Coalizione'], ascending = True)
     dataframe_italia.loc[dataframe_italia['Coalizione'] == 'NO COALIZIONE', 'Coalizione'] = dataframe_italia['Partito']
 
+    dataframe_estero = dataframe_estero.sort_values(['Coalizione'], ascending = True)
+    dataframe_estero.loc[dataframe_estero['Coalizione'] == 'NO COALIZIONE', 'Coalizione'] = dataframe_estero['Partito']
+
+    dataframe_aosta = dataframe_aosta.sort_values(['Partito'], ascending = True)
+
     coalizioni = list(set(dataframe_italia['Coalizione']))
+    partiti = list(set(dataframe_aosta['Partito']))
 
 
     for coalizione in coalizioni:
-        seggi_assegnati[coalizione] = dataframe_italia.loc[dataframe_italia['Coalizione'] == coalizione, 'Seggi'].sum()
+        seggi_assegnati[coalizione] = dataframe_italia.loc[dataframe_italia['Coalizione'] == coalizione, 'Seggi'].sum() + dataframe_estero.loc[dataframe_estero['Coalizione'] == coalizione, 'Seggi'].sum()
+        # seggi_assegnati[coalizione] = seggi_assegnati[coalizione] + dataframe_estero.loc[dataframe_estero['Coalizione'] == coalizione, 'Seggi'].sum()
+
+        # seggi_assegnati[coalizione] = dataframe_estero.loc[dataframe_estero['Coalizione'] == coalizione, 'Seggi'].sum()
+
+    for partito in partiti:
+        seggi_assegnati[partito] = dataframe_aosta.loc[dataframe_aosta['Partito'] == partito, 'Seggi'].sum()
         
     print(seggi_assegnati)
 
+
+    return seggi_assegnati
 
 
 
@@ -223,6 +237,17 @@ def binomiale_assegna_seggi_italia(*a, dataframe_italia, **kwargs):
     #     dataframe_finale = dataframe_finale.append({'Coalizione': ente, 'Partito': liste[ente][0], 'Voti': voti[ente][0], 'Seggi': 1}, ignore_index=True)
 
 
+
+
+# SEZIONE VISUALIZZAZIONE <-------------------------------------------------------- #
+
+def show_result(result):
+    
+    
+    for coalizione, v in result.items():
+        result[coalizione] = round(result[coalizione] / 214, 3)
+
+
 file1 = pd.read_csv('/home/alessandro/Documents/PoliMi/SimulatoreSistemiElettorali-2/LeggiElettorali/Binomiale/Data/Circoscrizione_Estera/voti_estero.csv')
 file2 = pd.read_csv('/home/alessandro/Documents/PoliMi/SimulatoreSistemiElettorali-2/LeggiElettorali/Binomiale/Data/Valle_Aosta/voti_valle_d_aosta.csv')
 file3 = pd.read_csv('/home/alessandro/Documents/PoliMi/SimulatoreSistemiElettorali-2/LeggiElettorali/Binomiale/Data/Regione/voti_province.csv')
@@ -232,6 +257,9 @@ italia = file3.copy()
 estero = file1.copy()
 aosta = file2.copy()
 
+seggi_estero = binomiale_estero(data = estero)
 seggi = binomiale_italia(data = italia)
-binomiale_assegna_seggi_italia(dataframe_italia = seggi)
+seggi_aosta = binomiale_valle_daosta(data = aosta)
+result = binomiale_assegna_seggi(dataframe_italia = seggi, dataframe_estero = seggi_estero, dataframe_aosta = seggi_aosta)
+show_result(result = result)
 
