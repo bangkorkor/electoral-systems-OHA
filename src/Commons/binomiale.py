@@ -243,14 +243,57 @@ def binomiale_assegna_seggi(*a, dataframe_italia, dataframe_aosta, dataframe_est
 
 def show_result(result):
     
+    dataOutput = pd.DataFrame(result.items(), columns =['Partito', 'Seggi'])
+    dataOutput['Seggi'] = dataOutput['Seggi'].astype(int)
+    dataOutput['Percentuali'] = round(dataOutput['Seggi'] / 214, 5)
+    dataOutput = dataOutput.sort_values(['Seggi'], ascending = False)
+
+
+    labels = []
+    for index, row in dataOutput.iterrows():
+        labels.append("{:.2f}%\n({:d} seats)".format(row['Percentuali'] * 100, row['Seggi']))
+
+    print(dataOutput)
     
-    for coalizione, v in result.items():
-        result[coalizione] = round(result[coalizione] / 214, 3)
+    fig, ax = plt.subplots(figsize=(15, 9), subplot_kw=dict(aspect="equal"))
+
+    data = dataOutput['Seggi']
+    partiti = dataOutput['Partito']
+
+    # frame = []
+    # exp = 0.01
+    # for index in range(len(dataOutput)):
+    #     frame.append(exp)
+    #     exp *= 1.4
+
+    # def func(pct, allvals):
+    #     absolute = int(pct/100.*np.sum(allvals))
+    #     return "{:.1f}%\n({:d} seats \ {:f})".format(pct, absolute, pct)
+    #     autopct=lambda pct: func(pct, data)
 
 
-file1 = pd.read_csv('/home/alessandro/Documents/PoliMi/SimulatoreSistemiElettorali-2/LeggiElettorali/Binomiale/Data/Circoscrizione_Estera/voti_estero.csv')
-file2 = pd.read_csv('/home/alessandro/Documents/PoliMi/SimulatoreSistemiElettorali-2/LeggiElettorali/Binomiale/Data/Valle_Aosta/voti_valle_d_aosta.csv')
-file3 = pd.read_csv('/home/alessandro/Documents/PoliMi/SimulatoreSistemiElettorali-2/LeggiElettorali/Binomiale/Data/Regione/voti_province.csv')
+    wedges, texts = ax.pie(data, labels = labels, labeldistance = 0.6,
+                                      textprops=dict(color="black"), explode = None)
+
+    ax.legend(wedges, partiti,
+              title="Coalizione/Partito",
+              loc="upper left",
+              bbox_to_anchor=(1.01, 0.08, 0.5, 1))
+
+    plt.setp(texts, size=4, weight="bold")
+
+    ax.set_title("Distribuzione Nazionale Camera dei Deputati 2013 con Legge Binomiale", loc='left')
+
+
+
+    plt.savefig('./binomiale.png', dpi=300)
+    plt.show()
+
+
+
+file1 = pd.read_csv('/home/poliradio/AleZito/SimulatoreSistemiElettorali-2/LeggiElettorali/Binomiale/Data/Circoscrizione_Estera/voti_estero.csv')
+file2 = pd.read_csv('/home/poliradio/AleZito/SimulatoreSistemiElettorali-2/LeggiElettorali/Binomiale/Data/Valle_Aosta/voti_valle_d_aosta.csv')
+file3 = pd.read_csv('/home/poliradio/AleZito/SimulatoreSistemiElettorali-2/LeggiElettorali/Binomiale/Data/Regione/voti_province.csv')
 
 
 italia = file3.copy()
