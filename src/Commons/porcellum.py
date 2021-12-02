@@ -782,6 +782,5 @@ def printing_visuals(lista) :
     ax.set_title("Distribuzione Nazionale Camera dei Deputati 2013", loc='left')
 
     plt.show()
-
-
+    
     return 0
