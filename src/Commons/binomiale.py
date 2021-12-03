@@ -323,12 +323,6 @@ def show_result(result):
     ax.add_artist(plt.Circle((0, 0), 0.6, color='white'))
     # fig.show()
 
-
-
-
-
-
-
     plt.show()
 
 
