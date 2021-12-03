@@ -1,7 +1,5 @@
 Estero:
   circoscrizioni_estere:
     - 'EUROPA'
-    - 'AMERICA MERIDIONALE'
-    - 'AMERICA SETTENTRIONALE E CENTRALE'
-    - 'AFRICA ASIA OCEANIA ANTARTIDE'
+    - 'RESTO DEL MONDO'
   seggi: 4

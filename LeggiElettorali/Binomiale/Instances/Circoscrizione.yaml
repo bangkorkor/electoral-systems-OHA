@@ -1,155 +1,550 @@
-'LOMBARDIA 1':
+'AGRIGENTO':
   regioni:
-  - LOMBARDIA 1
-  numero_seggi:
-  - 40
-
-'LOMBARDIA 2':
-  regioni:
-  - LOMBARDIA 2
-  numero_seggi:
-  - 45
-
-'LOMBARDIA 3':
-  regioni:
-  - LOMBARDIA 3
-  numero_seggi:
-  - 16
-
-'PIEMONTE 1':
-  regioni:
-  - PIEMONTE 1
-  numero_seggi:
-  - 23
-
-'PIEMONTE 2':
-  regioni:
-  - PIEMONTE 2
-  numero_seggi:
-  - 22
-
-'VENETO 1':
-  regioni:
-  - VENETO 1
-  numero_seggi:
-  - 31
-
-'VENETO 2':
-  regioni:
-  - VENETO 2
-  numero_seggi:
-  - 20
-
-'TRENTINO-ALTO ADIGE':
-  regioni:
-  - TRENTINO-ALTO ADIGE
-  numero_seggi:
-  - 12
-
-'FRIULI-VENEZIA GIULIA':
-  regioni:
-  - FRIULI-VENEZIA GIULIA
-  numero_seggi:
-  - 12
-
-'EMILIA ROMAGNA':
-  regioni:
-  - EMILIA ROMAGNA
-  numero_seggi:
-  - 45
-
-'TOSCANA':
-  regioni:
-  - TOSCANA
-  numero_seggi:
-  - 38
-
-'UMBRIA':
-  regioni:
-  - UMBRIA
-  numero_seggi:
-  - 9
-
-'MARCHE':
-  regioni:
-  - MARCHE
-  numero_seggi:
-  - 16
-
-'LAZIO 1':
-  regioni:
-  - LAZIO 1
-  numero_seggi:
-  - 42
-
-'LAZIO 2':
-  regioni:
-  - LAZIO 2
-  numero_seggi:
-  - 16
-
-'CAMPANIA 1':
-  regioni:
-  - CAMPANIA 1
-  numero_seggi:
-  - 32
-
-'CAMPANIA 2':
-  regioni:
-  - CAMPANIA 2
-  numero_seggi:
-  - 28
-
-'MOLISE':
-  regioni:
-  - MOLISE
+  - AGRIGENTO
   numero_seggi:
   - 2
-
-'ABRUZZO':
+'ALESSANDRIA':
   regioni:
-  - ABRUZZO
+  - ALESSANDRIA
   numero_seggi:
-  - 14
-
-'PUGLIA':
+  - 2
+'ANCONA':
   regioni:
-  - PUGLIA
+  - ANCONA
   numero_seggi:
-  - 42
-
-'BASILICATA':
+  - 2
+'AOSTA':
   regioni:
-  - BASILICATA
+  - AOSTA
   numero_seggi:
-  - 6
-
-'CALABRIA':
+  - 2
+'AREZZO':
   regioni:
-  - CALABRIA
+  - AREZZO
   numero_seggi:
-  - 20
-
-'SICILIA 1':
+  - 2
+'ASCOLI PICENO':
   regioni:
-  - SICILIA 1
+  - ASCOLI PICENO
   numero_seggi:
-  - 25
-
-'SICILIA 2':
+  - 2
+'ASTI':
   regioni:
-  - SICILIA 2
+  - ASTI
   numero_seggi:
-  - 27
-
-'SARDEGNA':
+  - 2
+'AVELLINO':
   regioni:
-  - SARDEGNA
+  - AVELLINO
   numero_seggi:
-  - 18
-
-'LIGURIA':
+  - 2
+'BARI':
   regioni:
-  - LIGURIA
+  - BARI
   numero_seggi:
-  - 16
+  - 2
+'BARLETTA-ANDRIA-TRANI':
+  regioni:
+  - BARLETTA-ANDRIA-TRANI
+  numero_seggi:
+  - 2
+'BELLUNO':
+  regioni:
+  - BELLUNO
+  numero_seggi:
+  - 2
+'BENEVENTO':
+  regioni:
+  - BENEVENTO
+  numero_seggi:
+  - 2
+'BERGAMO':
+  regioni:
+  - BERGAMO
+  numero_seggi:
+  - 2
+'BIELLA':
+  regioni:
+  - BIELLA
+  numero_seggi:
+  - 2
+'BOLOGNA':
+  regioni:
+  - BOLOGNA
+  numero_seggi:
+  - 2
+'BOLZANO':
+  regioni:
+  - BOLZANO
+  numero_seggi:
+  - 2
+'BRESCIA':
+  regioni:
+  - BRESCIA
+  numero_seggi:
+  - 2
+'BRINDISI':
+  regioni:
+  - BRINDISI
+  numero_seggi:
+  - 2
+'CAGLIARI':
+  regioni:
+  - CAGLIARI
+  numero_seggi:
+  - 2
+'CALTANISSETTA':
+  regioni:
+  - CALTANISSETTA
+  numero_seggi:
+  - 2
+'CAMPOBASSO':
+  regioni:
+  - CAMPOBASSO
+  numero_seggi:
+  - 2
+'CARBONIA-IGLESIAS':
+  regioni:
+  - CARBONIA-IGLESIAS
+  numero_seggi:
+  - 2
+'CASERTA':
+  regioni:
+  - CASERTA
+  numero_seggi:
+  - 2
+'CATANIA':
+  regioni:
+  - CATANIA
+  numero_seggi:
+  - 2
+'CATANZARO':
+  regioni:
+  - CATANZARO
+  numero_seggi:
+  - 2
+'CHIETI':
+  regioni:
+  - CHIETI
+  numero_seggi:
+  - 2
+'COMO':
+  regioni:
+  - COMO
+  numero_seggi:
+  - 2
+'COSENZA':
+  regioni:
+  - COSENZA
+  numero_seggi:
+  - 2
+'CREMONA':
+  regioni:
+  - CREMONA
+  numero_seggi:
+  - 2
+'CROTONE':
+  regioni:
+  - CROTONE
+  numero_seggi:
+  - 2
+'CUNEO':
+  regioni:
+  - CUNEO
+  numero_seggi:
+  - 2
+'ENNA':
+  regioni:
+  - ENNA
+  numero_seggi:
+  - 2
+'FERMO':
+  regioni:
+  - FERMO
+  numero_seggi:
+  - 2
+'FERRARA':
+  regioni:
+  - FERRARA
+  numero_seggi:
+  - 2
+'FIRENZE':
+  regioni:
+  - FIRENZE
+  numero_seggi:
+  - 2
+'FOGGIA':
+  regioni:
+  - FOGGIA
+  numero_seggi:
+  - 2
+'FORLI’-CESENA':
+  regioni:
+  - FORLI’-CESENA
+  numero_seggi:
+  - 2
+'FROSINONE':
+  regioni:
+  - FROSINONE
+  numero_seggi:
+  - 2
+'GENOVA':
+  regioni:
+  - GENOVA
+  numero_seggi:
+  - 2
+'GORIZIA':
+  regioni:
+  - GORIZIA
+  numero_seggi:
+  - 2
+'GROSSETO':
+  regioni:
+  - GROSSETO
+  numero_seggi:
+  - 2
+'IMPERIA':
+  regioni:
+  - IMPERIA
+  numero_seggi:
+  - 2
+'ISERNIA':
+  regioni:
+  - ISERNIA
+  numero_seggi:
+  - 2
+'LA SPEZIA':
+  regioni:
+  - LA SPEZIA
+  numero_seggi:
+  - 2
+'L’AQUILA':
+  regioni:
+  - L’AQUILA
+  numero_seggi:
+  - 2
+'LATINA':
+  regioni:
+  - LATINA
+  numero_seggi:
+  - 2
+'LECCE':
+  regioni:
+  - LECCE
+  numero_seggi:
+  - 2
+'LECCO':
+  regioni:
+  - LECCO
+  numero_seggi:
+  - 2
+'LIVORNO':
+  regioni:
+  - LIVORNO
+  numero_seggi:
+  - 2
+'LODI':
+  regioni:
+  - LODI
+  numero_seggi:
+  - 2
+'LUCCA':
+  regioni:
+  - LUCCA
+  numero_seggi:
+  - 2
+'MACERATA':
+  regioni:
+  - MACERATA
+  numero_seggi:
+  - 2
+'MANTOVA':
+  regioni:
+  - MANTOVA
+  numero_seggi:
+  - 2
+'MASSA-CARRARA':
+  regioni:
+  - MASSA-CARRARA
+  numero_seggi:
+  - 2
+'MATERA':
+  regioni:
+  - MATERA
+  numero_seggi:
+  - 2
+'MEDIO CAMPIDANO':
+  regioni:
+  - MEDIO CAMPIDANO
+  numero_seggi:
+  - 2
+'MESSINA':
+  regioni:
+  - MESSINA
+  numero_seggi:
+  - 2
+'MILANO':
+  regioni:
+  - MILANO
+  numero_seggi:
+  - 2
+'MODENA':
+  regioni:
+  - MODENA
+  numero_seggi:
+  - 2
+'MONZA E BRIANZA':
+  regioni:
+  - MONZA E BRIANZA
+  numero_seggi:
+  - 2
+'NAPOLI':
+  regioni:
+  - NAPOLI
+  numero_seggi:
+  - 2
+'NOVARA':
+  regioni:
+  - NOVARA
+  numero_seggi:
+  - 2
+'NUORO':
+  regioni:
+  - NUORO
+  numero_seggi:
+  - 2
+'OGLIASTRA':
+  regioni:
+  - OGLIASTRA
+  numero_seggi:
+  - 2
+'OLBIA-TEMPIO':
+  regioni:
+  - OLBIA-TEMPIO
+  numero_seggi:
+  - 2
+'ORISTANO':
+  regioni:
+  - ORISTANO
+  numero_seggi:
+  - 2
+'PADOVA':
+  regioni:
+  - PADOVA
+  numero_seggi:
+  - 2
+'PALERMO':
+  regioni:
+  - PALERMO
+  numero_seggi:
+  - 2
+'PARMA':
+  regioni:
+  - PARMA
+  numero_seggi:
+  - 2
+'PAVIA':
+  regioni:
+  - PAVIA
+  numero_seggi:
+  - 2
+'PERUGIA':
+  regioni:
+  - PERUGIA
+  numero_seggi:
+  - 2
+'PESARO E URBINO':
+  regioni:
+  - PESARO E URBINO
+  numero_seggi:
+  - 2
+'PESCARA':
+  regioni:
+  - PESCARA
+  numero_seggi:
+  - 2
+'PIACENZA':
+  regioni:
+  - PIACENZA
+  numero_seggi:
+  - 2
+'PISA':
+  regioni:
+  - PISA
+  numero_seggi:
+  - 2
+'PISTOIA':
+  regioni:
+  - PISTOIA
+  numero_seggi:
+  - 2
+'PORDENONE':
+  regioni:
+  - PORDENONE
+  numero_seggi:
+  - 2
+'POTENZA':
+  regioni:
+  - POTENZA
+  numero_seggi:
+  - 2
+'PRATO':
+  regioni:
+  - PRATO
+  numero_seggi:
+  - 2
+'RAGUSA':
+  regioni:
+  - RAGUSA
+  numero_seggi:
+  - 2
+'RAVENNA':
+  regioni:
+  - RAVENNA
+  numero_seggi:
+  - 2
+'REGGIO CALABRIA':
+  regioni:
+  - REGGIO CALABRIA
+  numero_seggi:
+  - 2
+'REGGIO EMILIA':
+  regioni:
+  - REGGIO EMILIA
+  numero_seggi:
+  - 2
+'RIETI':
+  regioni:
+  - RIETI
+  numero_seggi:
+  - 2
+'RIMINI':
+  regioni:
+  - RIMINI
+  numero_seggi:
+  - 2
+'ROMA':
+  regioni:
+  - ROMA
+  numero_seggi:
+  - 2
+'ROVIGO':
+  regioni:
+  - ROVIGO
+  numero_seggi:
+  - 2
+'SALERNO':
+  regioni:
+  - SALERNO
+  numero_seggi:
+  - 2
+'SASSARI':
+  regioni:
+  - SASSARI
+  numero_seggi:
+  - 2
+'SAVONA':
+  regioni:
+  - SAVONA
+  numero_seggi:
+  - 2
+'SIENA':
+  regioni:
+  - SIENA
+  numero_seggi:
+  - 2
+'SIRACUSA':
+  regioni:
+  - SIRACUSA
+  numero_seggi:
+  - 2
+'SONDRIO':
+  regioni:
+  - SONDRIO
+  numero_seggi:
+  - 2
+'TARANTO':
+  regioni:
+  - TARANTO
+  numero_seggi:
+  - 2
+'TERAMO':
+  regioni:
+  - TERAMO
+  numero_seggi:
+  - 2
+'TERNI':
+  regioni:
+  - TERNI
+  numero_seggi:
+  - 2
+'TORINO':
+  regioni:
+  - TORINO
+  numero_seggi:
+  - 2
+'TRAPANI':
+  regioni:
+  - TRAPANI
+  numero_seggi:
+  - 2
+'TRENTO':
+  regioni:
+  - TRENTO
+  numero_seggi:
+  - 2
+'TREVISO':
+  regioni:
+  - TREVISO
+  numero_seggi:
+  - 2
+'TRIESTE':
+  regioni:
+  - TRIESTE
+  numero_seggi:
+  - 2
+'UDINE':
+  regioni:
+  - UDINE
+  numero_seggi:
+  - 2
+'VARESE':
+  regioni:
+  - VARESE
+  numero_seggi:
+  - 2
+'VENEZIA':
+  regioni:
+  - VENEZIA
+  numero_seggi:
+  - 2
+'VERBANO-CUSIO-OSSOLA':
+  regioni:
+  - VERBANO-CUSIO-OSSOLA
+  numero_seggi:
+  - 2
+'VERCELLI':
+  regioni:
+  - VERCELLI
+  numero_seggi:
+  - 2
+'VERONA':
+  regioni:
+  - VERONA
+  numero_seggi:
+  - 2
+'VIBO VALENTIA':
+  regioni:
+  - VIBO VALENTIA
+  numero_seggi:
+  - 2
+'VICENZA':
+  regioni:
+  - VICENZA
+  numero_seggi:
+  - 2
+'VITERBO':
+  regioni:
+  - VITERBO
+  numero_seggi:
+  - 2
