@@ -8,7 +8,9 @@ as the second majority, each of the two lists gets one of their candidates, the 
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+import matplotlib
 import sys
+import random
 
 # associazioni = {}
 # associazioni_aosta = {}
@@ -242,16 +244,31 @@ def binomiale_assegna_seggi(*a, dataframe_italia, dataframe_aosta, dataframe_est
 # SEZIONE VISUALIZZAZIONE <-------------------------------------------------------- #
 
 def show_result(result):
+    base_colors = ['violet', 'pink', 'blue', 'yellow', 'red', 'green', 'orange', 'black', 'lime', 'turquoise']
+    # base_colors = ['red', 'blue', 'green', 'yellow', 'orange']
+    # base_colors = []
+    # for name, hex in matplotlib.colors.cnames.items():
+    #     if name != 'white':
+    #         base_colors.append(name)
+
+    # print(base_colors)
+    # random.shuffle(base_colors)
+    
     
     dataOutput = pd.DataFrame(result.items(), columns =['Partito', 'Seggi'])
+    dataOutput = dataOutput.append({'Partito': "", 'Seggi': str(214)}, ignore_index=True)
     dataOutput['Seggi'] = dataOutput['Seggi'].astype(int)
-    dataOutput['Percentuali'] = round(dataOutput['Seggi'] / 214, 5)
-    dataOutput = dataOutput.sort_values(['Seggi'], ascending = False)
+    dataOutput['Percentuali'] = round(dataOutput['Seggi'] / 214, 5)   
+    dataOutput = dataOutput.sort_values(['Seggi'], ascending = True)
 
+    total_lists = dataOutput['Partito'].count()
 
     labels = []
     for index, row in dataOutput.iterrows():
-        labels.append("{:.2f}%\n({:d} seats)".format(row['Percentuali'] * 100, row['Seggi']))
+        if row['Partito'] == "":
+            labels.append("")
+        else:
+            labels.append("{:.2f}% ({:d} seats)".format(row['Percentuali'] * 100, row['Seggi']))
 
     print(dataOutput)
     
@@ -259,6 +276,10 @@ def show_result(result):
 
     data = dataOutput['Seggi']
     partiti = dataOutput['Partito']
+    colors = base_colors[0:total_lists-1]
+    colors.append('white')
+
+
 
     # frame = []
     # exp = 0.01
@@ -272,10 +293,10 @@ def show_result(result):
     #     autopct=lambda pct: func(pct, data)
 
 
-    wedges, texts = ax.pie(data, labels = labels, labeldistance = 0.6,
-                                      textprops=dict(color="black"), explode = None)
+    wedges, texts = ax.pie(data, labels = labels, labeldistance = 1.05,
+                                      textprops=dict(color="black"), colors = colors, explode = None)
 
-    ax.legend(wedges, partiti,
+    ax.legend(wedges, partiti[:total_lists-1],
               title="Coalizione/Partito",
               loc="upper left",
               bbox_to_anchor=(1.01, 0.08, 0.5, 1))
@@ -283,10 +304,31 @@ def show_result(result):
     plt.setp(texts, size=4, weight="bold")
 
     ax.set_title("Distribuzione Nazionale Camera dei Deputati 2013 con Legge Binomiale", loc='left')
+    ax.add_artist(plt.Circle((0, 0), 0.6, color='white'))
 
+    
 
+    plt.rcParams['figure.dpi'] = 300
 
     plt.savefig('./binomiale.png', dpi=300)
+
+
+
+    # append data and assign color
+
+    # plot
+    # fig = plt.figure(figsize=(8,6),dpi=100)
+    # ax = fig.add_subplot(1,1,1)
+    # ax.pie(val, labels=label, colors=colors)
+    ax.add_artist(plt.Circle((0, 0), 0.6, color='white'))
+    # fig.show()
+
+
+
+
+
+
+
     plt.show()
 
 
