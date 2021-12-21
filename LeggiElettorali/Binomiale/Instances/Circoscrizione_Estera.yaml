@@ -1,10 +1,2 @@
-'EUROPA':
-  nome:
-  - 'EUROPA'
-  numero_seggi:
-  - 2
-'RESTO DEL MONDO':
-  nome:
-  - 'RESTO DEL MONDO'
-  numero_seggi:
-  - 2
+"EUROPA": {}
+"RESTO DEL MONDO": {}
