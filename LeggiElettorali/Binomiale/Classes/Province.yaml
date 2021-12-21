@@ -7,20 +7,21 @@ metaclasses:
 # sezione di configuazione della classe Valle_Aosta #
 
 external:
-  voti_valle_d_aosta:
+  voti_province:
     columns:
       - Partito
       - Voti
+      - Coalizione
     
 # LANE SECTION <------------------------------------- #
 
 lane:
-  valle_d_aosta:
+  province:
     node_type: only
     order_number: 1
     # first_input: None
     distribution: binomiale
-    info_name: valle_d_aosta
+    info_name: province
 
 
 
@@ -44,7 +45,7 @@ totals:
     type: aggregate
     source:
       type: fun
-      name: self.valle_d_aosta
+      name: self.province
     rename:
       Coalizione: Partito
     columns:
@@ -57,22 +58,22 @@ totals:
 
 
 totals_support:
-  valle_d_aosta:
+  province:
     source:
       type: fun
-      name: self.valle_d_aosta_coalizioni
+      name: self.province_coalizioni
     type: transform
     ops:
       - type: dataframe
         source:
           type: fun
           name: Commons.calc_binomiale
-  valle_d_aosta_coalizioni:
+  province_coalizioni:
     # source:
     #   totals: liste
     source:
       type: fun
-      name: self.get_voti_valle_d_aosta
+      name: self.get_voti_province
     type: transform
     ops:
       - type: dataframe
