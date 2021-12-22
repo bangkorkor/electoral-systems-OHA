@@ -1,3 +1,4 @@
+from typing import final
 import src.GlobalVars
 from runpy import run_path
 import sys
@@ -86,6 +87,8 @@ def run_simulation(path):
         Commons.printing_visuals(final_result) #visualizzaione grafica da porcellum.py
     if 'Mattarellum' in path:
         Commons.show_chart(final_result) # visualizzazione grafica da mattarellum.py
+    if 'Binomiale' in path:
+        Commons.show_binomiale_chart(final_result)
 
 
     return final_result
