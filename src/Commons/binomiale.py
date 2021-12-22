@@ -74,7 +74,7 @@ def show_binomiale_chart(result):
 
     plt.rcParams['figure.dpi'] = 300
 
-    plt.savefig('./binomiale2.png', dpi=300)
+    plt.savefig('./binomiale.png', dpi=300)
 
     ax.add_artist(plt.Circle((0, 0), 0.6, color='white'))
 
