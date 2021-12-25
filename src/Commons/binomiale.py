@@ -39,7 +39,7 @@ def show_binomiale_chart(result):
     df = df.append({'Partito': "", 'Seggi': df['Seggi'].sum()}, ignore_index=True)
 
     df_res = df.groupby(['Partito']).sum().reset_index()
-    base_colors = ['white', 'violet', 'pink', 'blue', 'yellow', 'red', 'green', 'orange', 'black', 'lime', 'turquoise']
+    base_colors = ['white', 'red', 'yellow', 'blue', 'grey', 'orange', 'violet', 'pink', 'green', 'black', 'lime', 'turquoise']
     
     df_res['Seggi'] = df_res['Seggi'].astype(int)
     df_res['Percentuali'] = round(df_res['Seggi'] / (df_res['Seggi'].sum() / 2), 5)   
