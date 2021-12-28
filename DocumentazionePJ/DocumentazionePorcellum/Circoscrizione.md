@@ -14,8 +14,8 @@ external:
     init: True
 ```
 Abbiamo specificato il fatto che Circoscrizione ha gli attributi :
-- numero_seggi: deve essere inizializzato
-- regioni: deve essere inizializzato
+- numero_seggi : deve essere inizializzato
+- regioni : deve essere inizializzato
 
 I valori che questi due parametri prenderanno possono essere trovati al file [Instances/Circoscrizione.yaml]
 
@@ -28,7 +28,6 @@ source:
 ```
 
 ---
-
 ## Subdivisions
 Qui definiamo da quali sottodivisioni la Circoscrizione è composta.
 Serve inoltre per poter chiamare delle funzioni della sottodivisione stessa.
@@ -78,7 +77,7 @@ lane:
     info_name: Circoscrizione
 ```
 
-L'entità Circoscrizione avrà un lane con nome 'lista' così configurata:
+L'entità Circoscrizione avrà un lane con nome 'lista' così configurata :
 - sarà di tipo tail
 - il nome della lane è Circoscrizione
 
@@ -140,7 +139,7 @@ totals:
       Voti: sum
 ```
 
-Il totals 'liste' ha questa configurazine:
+Il totals 'liste' ha questa configurazine :
 - è di tipo aggregazione
 - la sua input di dati è la funzione self.subs_regioni_liste (vedere external per chiarimenti)
 - ritorna un dataframe con le colonne Partito, Coalizione, Voti (la colonna Partito è ottenuta rinnominando Lista)

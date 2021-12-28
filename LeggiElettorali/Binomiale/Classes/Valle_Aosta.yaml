@@ -4,7 +4,7 @@ metaclasses:
   - external
 
 
-# sezione di configuazione della classe Valle_Aosta #
+# sezione di configurazione della classe Valle_Aosta #
 
 external:
   voti_valle_d_aosta:
