@@ -1,6 +1,6 @@
 # Explanation of code
 This document will provide a brief overview of certain patterns that I have adopted in writing this
-softwar, so as to make reading and understanding the code easier
+software, so as to make reading and understanding the code easier
 
 ## deepCopy decorator
 
