@@ -61,7 +61,7 @@ Le chiavi del dizionario interno a `targets` sono :
 *Risultati :* vengono generate le variabili e le funzioni con il seguente schema :
 + `give_{chiave_del_dizionario}`
 + `get_{chiave_del_dizionario_o_name_o_chiave_di_external}`
-+ se `init` è `True` allora aggiunge un valore che è richiesto in fase di istanziazione, a meno che default sia presente, in tal caso inserisce il valore di default
++ se `init` è `True` allora aggiunge un valore che è richiesto in fase d'istanziazione, a meno che default sia presente, in tal caso inserisce il valore di default
 
 
 ---
@@ -74,13 +74,13 @@ Questa metaclasse definisce le relazioni tra due classi di aree geografiche e id
 *Parola Chiave nel File :* `subdivisions`
 
 *Parametri :* un dizionario le cui chiavi indicano il nome della variabile in cui salvare l'istanza del sottolivello.
-Ad ogni chiave viene associato un dizionario avente la seguente configurazione :
+A ogni chiave viene associato un dizionario avente la seguente configurazione:
 + `type` : il nome della classe
-+ `functions` : una lista di dizionari, ogni dizionario ha :
++ `functions` : una lista di dizionari, ogni dizionario ha:
     + `name` : il nome della funzione da esporre
     + `source` : una definizione tramite source della funzione da eseguire. Si assume che nell'esecuzione di source "self" nel namespace si riferirà ad una sottodivisione
 
-La funzione verrà chiamata su ogni istanza del sottolivello e i risultati saranno aggregati :
+La funzione verrà chiamata su ogni istanza del sottolivello e i risultati saranno aggregati:
 + se di tipo `int` verranno sommati
 + se di tipo `DataFrame` verranno concatenati
 + altrimenti concatenati in una lista
@@ -282,7 +282,7 @@ Transform ops:
 ## Candidate
 #### Funzionalità
 Questa classe definisce le due funzioni necessarie per un candidato:
-1. ricevere proposte di seggi dove si è stati eletti (e eventuali informazioni aggiuntive)
+1. ricevere proposte di seggi dove si è stati eletti (ed eventuali informazioni aggiuntive)
 2. dove ci siano opportunità multiple il candidato deve scegliere quale accettare e quali rifiutare
 
 #### Configurazione
