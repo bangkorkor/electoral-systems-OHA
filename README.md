@@ -53,7 +53,7 @@ for more information on which files to put in the folder, see the [documentation
 ## Credits
 
 + First release of the framework and Europee electoral law: Lorenzo Ruffati ([@LRuffati](https://github.com/LRuffati)) 
-+ Porcellum electoral law: Laura Amabili ([@LAmabili](https://github.com/LauraAmabili)) flavio.zecchinello@mail.polimi.it
++ Porcellum electoral law: Laura Amabili ([@LAmabili](https://github.com/LauraAmabili))
 + Mattarellum electoral law: Davide Maioli ([@davidemaioli](https://github.com/davidemaioli)) 
 + Binomiale Electoral law: 
     + Alessandro Zito ([@alessandrozito98](https://github.com/alessandrozito98))
