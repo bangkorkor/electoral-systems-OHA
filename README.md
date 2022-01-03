@@ -39,7 +39,7 @@ python3 -m src LeggiElettorali/LawName
 
 ```python
     import src
-    src.run_simulation('path/to/folder')
+    src.run_simulation('LeggiElettorali/LawName')
  ```
 
 ### Setup
