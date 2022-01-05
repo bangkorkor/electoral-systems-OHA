@@ -32,8 +32,8 @@ Two ways of starting the simulation:
 1) Using the bash console:
 
 ```bash
-python3 -m src LeggiElettorali/LawName
-``` 
+      python3 -m src LeggiElettorali/LawName
+      ``` 
 
 2) Using the python console:
 
