@@ -32,14 +32,14 @@ Two ways of starting the simulation:
 1) Using the bash console:
 
 ```bash
-      python3 -m src LeggiElettorali/LawName
-      ``` 
+python3 -m src LeggiElettorali/LawName
+``` 
 
 2) Using the python console:
 
 ```python
-    import src
-    src.run_simulation('LeggiElettorali/LawName')
+import src
+src.run_simulation('LeggiElettorali/LawName')
  ```
 
 ### Setup
