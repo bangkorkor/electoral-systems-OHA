@@ -2,13 +2,16 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-brightgreen.svg)](https://opensource.org/licenses/MIT)
 [![CodeFactor](https://www.codefactor.io/repository/github/alessandrozito98/simulatoresistemielettorali-2/badge)](https://www.codefactor.io/repository/github/alessandrozito98/simulatoresistemielettorali-2)
-<!---[![wakatime](https://wakatime.com/badge/github/alessandrozito98/SimulatoreSistemiElettorali-2.svg)](https://wakatime.com/badge/github/alessandrozito98/SimulatoreSistemiElettorali-2)-->
+<!--- 
+[![wakatime](https://wakatime.com/badge/github/alessandrozito98/SimulatoreSistemiElettorali-2.svg)](https://wakatime.com/badge/github/alessandrozito98/SimulatoreSistemiElettorali-2) 
+-->
 <a href="https://github.com/alessandrozito98/SimulatoreSistemiElettorali-2/pulls">
       <img alt="GitHub pull requests" src="https://img.shields.io/github/issues-pr/alessandrozito98/SimulatoreSistemiElettorali-2?color=0088ff" />
 </a>
 <a href="https://github.com/alessandrozito98/SimulatoreSistemiElettorali-2/issues">
     <img alt="GitHub issuess" src="https://img.shields.io/github/issues/alessandrozito98/SimulatoreSistemiElettorali-2?color=0088ff" />
 </a>
+
 ## Description
 
 Simulations of different electoral laws with the same dataset to see if there would be any changes in the composition of the parliament.
