@@ -12,6 +12,7 @@ import matplotlib
 
 
 def fill_coalizione(*a, data, **kwargs):
+    """Associate Lists to Coalitions"""
     toReturn = data.copy()
     if ( 'Coalizione' not in toReturn.columns):
         toReturn['Coalizione'] = 'NO COALIZIONE'
@@ -20,6 +21,7 @@ def fill_coalizione(*a, data, **kwargs):
     return toReturn
 
 def calc_binomiale(*a, data, **kwargs):
+    """Returns a dataframe with only the first two winning Coalitions for every geopgraphical entities"""
     print(data)
     sorted_df = data.sort_values(['Voti'], ascending = (False))
     toReturn = pd.DataFrame({'Coalizione': [], 'Partito': [], 'Voti': [], 'Seggi': []})
@@ -35,6 +37,7 @@ def calc_binomiale(*a, data, **kwargs):
     return toReturn
 
 def show_binomiale_chart(result):
+    """Plots the results into a a pie chart"""
     df = pd.DataFrame(result, columns = ['Circoscrizione', 'Class', 'Partito', 'Seggi'])
     df = df.append({'Partito': "", 'Seggi': df['Seggi'].sum()}, ignore_index=True)
 
