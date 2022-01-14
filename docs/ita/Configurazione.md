@@ -1,6 +1,6 @@
 # Configurazione delle Classi
 
-Credits: Lorenzo Ruffati
+Credits: Lorenzo Ruffati, Alessandro Zito, Mirko Li Veli
 
 ---
 
