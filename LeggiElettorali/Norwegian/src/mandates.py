@@ -37,13 +37,15 @@ for i in range(150):
     refrenceScore[max_key] = refrenceScore0[max_key] / (2*mandates[max_key] + 1)
 
     
-
-
 for key in mandates.keys():
     print(key, mandates[key])
 
+def getNumberOfMandates(region):
+    return mandates[region]
+
 print()
 print("Sum mandates:", sum(mandates.values()))
+
 
 
 
