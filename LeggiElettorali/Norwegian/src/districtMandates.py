@@ -94,8 +94,10 @@ def get_district_mandates():
 def get_number_of_regions():
     return len(regions)
 
+def get_seats_per_region():
+    return seats_per_region
 
-# # Print results
+# Print results
 # for region, parties in seats_per_region.items():
 #     print(f"\n{region} Seats:")
 #     for party, count in parties.items():

@@ -47,9 +47,12 @@ for i in range(districtMandates):
     mandates[max_key] += 1
     refrenceScore[max_key] = refrenceScore0[max_key] / (2*mandates[max_key] + 1)
 
-    
+
 # for key in mandates.keys():
 #     print(key, mandates[key])
+
+def getMandatesPerRegion():
+    return mandates
 
 def getNumberOfMandates(region):
     return mandates[region]

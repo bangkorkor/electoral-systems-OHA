@@ -1,5 +1,6 @@
 import csv
-from districtMandates import get_district_mandates, get_number_of_regions
+from districtMandates import get_district_mandates, get_number_of_regions, get_seats_per_region
+from mandatesDistribution import getMandatesPerRegion
 
 # File path to the CSVs
 votes_file_path = 'LeggiElettorali/Norwegian/Data/voti_liste.csv'
@@ -110,6 +111,27 @@ def calculate_under_threshold_data(total_votes, district_mandates, vote_threshol
 
     return (under_threshold_votes, under_threshold_mandates), (total_votes_under_threshold, total_mandates_under_threshold)
 
+def calculate_regional_quotients(votes_data, mandates_data, qualifying_parties):
+
+    quotients = {}
+    for region, parties_votes in votes_data.items():
+        region_mandates = mandates_data.get(region, 0)
+        total_votes_in_region = sum(parties_votes.values())
+        average_votes_per_mandate = total_votes_in_region / region_mandates if region_mandates else 0
+
+        # Calculate quotients only for qualified parties
+        region_quotients = {}
+        for party, votes in parties_votes.items():
+            if party in qualifying_parties:  # Check if party is in the qualifying_parties dict
+                base_quotient = votes / (2 * region_mandates + 1) if region_mandates else 0
+                normalized_quotient = base_quotient / average_votes_per_mandate if average_votes_per_mandate else 0
+                region_quotients[party] = normalized_quotient
+        
+        quotients[region] = region_quotients
+
+    return quotients
+
+
 total_votes_count = sum(total_votes.values())
 four_percent_threshold = total_votes_count * 0.04
 
@@ -126,10 +148,77 @@ qualifying_national_mandates = numberOfTotalMandates - totals_under_treshold[1]
 
 national_mandates = sainte_lague(qualifying_parties, qualifying_national_mandates, 1.4)
 
-
 mandate_differences = adjust_mandates_until_balanced(national_mandates, district_mandates, total_votes, four_percent_threshold)
 
 
-print("Mandate differences between national distribution and district mandates:")
-for party, difference in mandate_differences.items():
-    print(f"{party}: National vs. District difference = {difference} mandates")
+# Calculate quotients
+regional_quotients = calculate_regional_quotients(get_seats_per_region(), getMandatesPerRegion(), national_mandates)
+
+def flatten_sorted_quotients(regional_quotients):
+    flat_list = []
+    for region, parties in regional_quotients.items():
+        for party, quotient in parties.items():
+            flat_list.append((region, party, quotient))
+    return sorted(flat_list, key=lambda x: x[2], reverse=True)
+
+
+def assign_adjustment_mandates(sorted_quotients, required_mandates):
+    assignments = {}
+    regions_assigned = set()
+    party_mandates_assigned = {party: 0 for party in required_mandates}
+    for region, party, _ in sorted_quotients:
+        if regions_assigned.__contains__(region) or party_mandates_assigned[party] >= required_mandates[party]:
+            continue  # Skip if the region has been assigned or the party has received all its mandates
+
+        # Assign the mandate
+        if party not in assignments:
+            assignments[party] = []
+        assignments[party].append(region)
+        party_mandates_assigned[party] += 1
+        regions_assigned.add(region)
+
+        # Stop if all mandates are assigned
+        if all(mandates == required_mandates[party] for party, mandates in party_mandates_assigned.items()):
+            break
+
+    return assignments
+
+adjustment_mandates = assign_adjustment_mandates(flatten_sorted_quotients(regional_quotients), mandate_differences)
+
+def print_mandate_summary(district_mandates, adjustment_mandates):
+    print("Mandate Summary:")
+    for region, parties in district_mandates.items():
+        print(f"\nRegion: {region}")
+        print("District Mandates:")
+        for party, mandates in parties.items():
+            print(f"  {party}: {mandates} mandates")
+        
+        adjustment_winner = None
+        for party, regions in adjustment_mandates.items():
+            if region in regions:
+                adjustment_winner = party
+                break
+        
+        if adjustment_winner:
+            print(f"Adjustment Mandate Winner: {adjustment_winner}")
+        else:
+            print("No Adjustment Mandate Assigned")
+
+print_mandate_summary(get_seats_per_region(), adjustment_mandates)
+
+
+# print("Adjustment Mandates Assigned:")
+# for party, regions in adjustment_mandates.items():
+#     print(f"{party} received adjustment mandates in regions: {', '.join(regions)}")
+
+# # Output results
+# for region, quotients in regional_quotients.items():
+#     print(f"Region: {region}")
+#     for party, quotient in quotients.items():
+#         print(f"  {party}: Quotient = {quotient}")
+
+
+
+# print("Mandate differences between national distribution and district mandates:")
+# for party, difference in mandate_differences.items():
+#     print(f"{party}: National vs. District difference = {difference} mandates")
