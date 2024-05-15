@@ -27,24 +27,35 @@ refrenceScore0 = {}
 for row in data:
     refrenceScore0[row[0]] = row[1]+  1.8 * row[2]
 
+# If True, every region gets an automnatic 4 mandates and we are only left with 70 district mandates. If False 0 mandates is given automatic and we have 150 district mandates.
+enableAutomaticMandates = True
+
+if enableAutomaticMandates:
+    automaticMandates = 4
+    districtMandates = 70
+else:
+    automaticMandates = 0
+    districtMandates = 150
+
+
 # Sainte-Laguë method
-mandates = {key:0 for key in refrenceScore0.keys()}
+mandates = {key:automaticMandates for key in refrenceScore0.keys()}
 
 refrenceScore = refrenceScore0.copy()
-for i in range(150):
+for i in range(districtMandates):
     max_key = max(refrenceScore, key=lambda key: refrenceScore[key])      # max_key is the party with the highest refrenceScore
     mandates[max_key] += 1
     refrenceScore[max_key] = refrenceScore0[max_key] / (2*mandates[max_key] + 1)
 
     
-for key in mandates.keys():
-    print(key, mandates[key])
+# for key in mandates.keys():
+#     print(key, mandates[key])
 
 def getNumberOfMandates(region):
     return mandates[region]
 
-print()
-print("Sum mandates:", sum(mandates.values()))
+# print()
+# print("Sum mandates:", sum(mandates.values()))
 
 
 

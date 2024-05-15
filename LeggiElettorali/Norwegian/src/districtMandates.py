@@ -85,14 +85,22 @@ for region in regions:
             divisor = 2 * seats_per_region[region][max_key[1]] - 1
         
         data[index][2] = party_votes / divisor
-        print(f"{max_key[1]} has won a seat in {region} with {max_key[2]} votes after adjustment.")
+        #print(f"{max_key[1]} has won a seat in {region} with {max_key[2]} votes after adjustment.")
 
-# Print results
-for region, parties in seats_per_region.items():
-    print(f"\n{region} Seats:")
-    for party, count in parties.items():
-        print(f"{party}: {count}")
+def get_district_mandates():
+    """Returns the number of seats each party has received."""
+    return seats
 
-print("\nTotal Seats per Party:")
-for party, total in seats.items():
-    print(f"{party}: {total}")
+def get_number_of_regions():
+    return len(regions)
+
+
+# # Print results
+# for region, parties in seats_per_region.items():
+#     print(f"\n{region} Seats:")
+#     for party, count in parties.items():
+#         print(f"{party}: {count}")
+
+# print("\nTotal Seats per Party:")
+# for party, total in seats.items():
+#     print(f"{party}: {total}")
