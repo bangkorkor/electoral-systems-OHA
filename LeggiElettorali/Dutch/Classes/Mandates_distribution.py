@@ -4,7 +4,7 @@ import json
 import os
 
 
-NUM_SEATS = 605  # Number of seats
+NUM_MANDATES = 605  # Number of mandates
 
 class Mandates_distribution:
 
@@ -45,36 +45,36 @@ class Mandates_distribution:
         return empty_mandates_distriubtion
     
     def get_mandate_distribution(self, data, parties):
-        # assign seats to each party by rounding down, this will leave some seats unassigned
+        # assign mandates to each party by rounding down, this will leave some mandates unassigned
         mandates_distribution = parties.copy()      # dictionary to hold the number of mandates per party
         total_votes = sum(data.values())            # sums all the total votes
-        electoral_devisor = total_votes / NUM_SEATS
+        electoral_devisor = total_votes / NUM_MANDATES
         for party, vote in data.items():
             mandates_distribution[party] = math.floor(vote / electoral_devisor)
 
-        # ASSIGN THE REMINDING SEATS
-        seats_left = NUM_SEATS -  sum(mandates_distribution.values())   # Number of seats left to assign
-        # remove parties that have zero seats
-        patries_with_seats = {}
-        for party, seat in mandates_distribution.items():
-            if seat > 0:
-                patries_with_seats[party] = seat
+        # ASSIGN THE REMINDING MANDATES
+        mandates_left = NUM_MANDATES -  sum(mandates_distribution.values())   
+        # remove parties that have zero mandates
+        parties_suitable = {}
+        for party, mandate in mandates_distribution.items():
+            if mandate > 0:
+                parties_suitable[party] = mandate
 
-        # give seat to the party with the higest votes per seat
-        while seats_left > 0:
-            votes_per_seat = {}
+        # give mandate to the party with the higest votes per mandate
+        while mandates_left > 0:
+            votes_per_mandate = {}
             for party, vote in data.items():
-                if party in patries_with_seats:
-                    votes_per_seat[party] = vote / (patries_with_seats[party])
-            party_with_highest_votes_per_seat = max(votes_per_seat, key=votes_per_seat.get)
-            patries_with_seats[party_with_highest_votes_per_seat] += 1
-            seats_left -= 1
-            print(f'{party_with_highest_votes_per_seat} got an additional seat')
-            print(f'{seats_left} seats left to assign')
+                if party in parties_suitable:
+                    votes_per_mandate[party] = vote / (parties_suitable[party])
+            party_with_highest_votes_per_mandate = max(votes_per_mandate, key=votes_per_mandate.get)
+            parties_suitable[party_with_highest_votes_per_mandate] += 1
+            mandates_left -= 1
+            print(f'{party_with_highest_votes_per_mandate} got an additional mandate')
+            print(f'{mandates_left} mandates left to assign')
             print()    
-        # updating the seats dictionary to include the new seats, (the old seats are still there)
-        for party, seat in patries_with_seats.items():
-            mandates_distribution[party] = seat            
+        # updating the mandates dictionary to include the new mandates, (the old mandates are still there)
+        for party, mandate in parties_suitable.items():
+            mandates_distribution[party] = mandate            
         
         return mandates_distribution
     
