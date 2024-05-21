@@ -43,10 +43,6 @@ class Visualize:
         for elm in self.party_colors:
             if elm in parties:
                 colors.append(self.party_colors[elm])
-        print(colors)
-
-        print("len(parties)", len(parties))
-        print("len(colors)", len(colors))
         
 
         fig, ax2 = plt.subplots(figsize=(10,7))  # Only ax2 subplot
