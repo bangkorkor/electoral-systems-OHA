@@ -1,5 +1,6 @@
 name: "Norwegian electoral system on Italian data"
 data:
-  vote_data_csv: voti_liste.csv
-  parties : parties.json
+  size_csv: 'size.csv'
+  vote_data_csv: 'voti_liste.csv'
+  parties: 'parties.json'
   

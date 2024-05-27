@@ -1,108 +1,67 @@
-import mandatesDistribution
 import csv
+import os
 
-parties = ["+EUROPA - ITALIA IN COMUNE - PDE ITALIA",   # Dette er noob maate aa gjore det paa, br bruke instances?
-"AUTONOMIE PER L'EUROPA",
-"CASAPOUND ITALIA - DESTRE UNITE",
-"EUROPA VERDE",
-"FORZA ITALIA",
-"FORZA NUOVA",
-"FRATELLI D'ITALIA",
-"LA SINISTRA",
-"LEGA SALVINI PREMIER",
-"MOVIMENTO 5 STELLE",
-"PARTITO ANIMALISTA",
-"PARTITO COMUNISTA",
-"PARTITO DEMOCRATICO",
-"PARTITO PIRATA",
-"POPOLARI PER L'ITALIA",
-"POPOLO DELLA FAMIGLIA - ALTERNATIVA POPOLARE",
-"PPA MOVIMENTO POLITICO PENSIERO AZIONE",
-"SVP"
-]
+class DistrictMandates:
+    def __init__(self, instance):
+        # Initialize the necessary data from the given instance
+        current_directory_path = os.path.dirname(__file__)
+        self.regions_data = self.load_regions_data(os.path.join(current_directory_path, "../Data/", instance["data"]["size_csv"]))
+        self.number_of_regions = len(self.regions_data)
+        self.total_mandates = 605 - self.number_of_regions  # Total mandates excluding one adjustment mandate per region
+        self.seats_per_region = self.calculate_seats_per_region()
+        self.district_mandates = self.calculate_district_mandates()
 
-regions = ["ABRUZZO",       # Dette er noob måte å gjøre det på, bør bruke instances?
-"BASILICATA",
-"CALABRIA",
-"CAMPANIA",
-"EMILIA-ROMAGNA",
-"FRIULI-VENEZIA GIULIA",
-"LIGURIA",
-"LOMBARDIA",
-"MARCHE",
-"MOLISE",
-"PIEMONTE",
-"SARDEGNA",
-"SICILIA",
-"TOSCANA",
-"TRENTINO-ALTO ADIGE",
-"UMBRIA",
-"VALLE D'AOSTA",
-"VENETO",
-"LAZIO",
-"PUGLIA"
-]
+    def load_regions_data(self, file_path):
+        # Load regions data from the CSV file
+        regions_data = []
+        with open(file_path, newline='') as file:
+            reader = csv.reader(file, delimiter=',')
+            for row in reader:
+                region, population, size = row
+                regions_data.append({
+                    'name': region,
+                    'population': int(population),
+                    'size': int(size)
+                })
+        return regions_data
 
-# Initialize the dictionary to hold data and results
-data = []
-seats = {party: 0 for party in parties}
-seats_per_region = {region: {party: 0 for party in parties} for region in regions}
+    def calculate_seats_per_region(self):
+        # Calculate the number of seats per region using Sainte-Laguë method
+        total_population = sum(region['population'] for region in self.regions_data)
+        total_size = sum(region['size'] for region in self.regions_data)
 
-# Load data from the CSV file
-file_path = 'LeggiElettorali/Norwegian/Data/voti_liste.csv'
-with open(file_path, newline='') as file:
-    reader = csv.reader(file, delimiter=',')
-    next(reader)  
-    for row in reader:
-        region, party, votes = row
-        data.append([region, party, int(votes)])
+        # Calculate weights for each region based on population and size
+        weights = {region['name']: region['population'] + 1.4 * region['size'] for region in self.regions_data}
+        total_weight = sum(weights.values())
 
-# Assuming `data` is a list of [region, party, votes]
-original_votes = {}
-for item in data:
-    region, party, votes = item
-    if region not in original_votes:
-        original_votes[region] = {}
-    original_votes[region][party] = votes
+        # Initialize seats and divisors for Sainte-Laguë method
+        seats = {region['name']: 0 for region in self.regions_data}
+        divisors = {region['name']: 1.0 for region in self.regions_data}
 
-for region in regions:
-    number_of_mandates = mandatesDistribution.getNumberOfMandates(region)
-    for _ in range(number_of_mandates):
-        region_list = [x for x in data if x[0] == region]
-        max_key = max(region_list, key=lambda key: key[2])
+        # Distribute seats using Sainte-Laguë method
+        for _ in range(self.total_mandates):
+            highest_weight_region = max(weights, key=lambda r: weights[r] / divisors[r])
+            seats[highest_weight_region] += 1
+            divisors[highest_weight_region] += 2
 
-        # Increment the seat count for the winning party in the region
-        seats[max_key[1]] += 1
-        seats_per_region[region][max_key[1]] += 1
+        return seats
 
-        # Adjust the votes using a form of the Modified Sainte-Laguë method
-        index = data.index(max_key)
-        party_votes = original_votes[region][max_key[1]]
-        
-        if seats_per_region[region][max_key[1]] == 1:
-            divisor = 1.4
-        else:
-            divisor = 2 * seats_per_region[region][max_key[1]] - 1
-        
-        data[index][2] = party_votes / divisor
-        #print(f"{max_key[1]} has won a seat in {region} with {max_key[2]} votes after adjustment.")
+    def calculate_district_mandates(self):
+        # Use the calculated seats per region as district mandates
+        return self.seats_per_region
 
-def get_district_mandates():
-    """Returns the number of seats each party has received."""
-    return seats
+    def get_number_of_regions(self):
+        # Return the number of regions
+        return self.number_of_regions
 
-def get_number_of_regions():
-    return len(regions)
+    def get_district_mandates(self):
+        # Return the district mandates
+        return self.district_mandates
 
-def get_seats_per_region():
-    return seats_per_region
-
-# Print results
-# for region, parties in seats_per_region.items():
-#     print(f"\n{region} Seats:")
-#     for party, count in parties.items():
-#         print(f"{party}: {count}")
-
-# print("\nTotal Seats per Party:")
-# for party, total in seats.items():
-#     print(f"{party}: {total}")
+    def get_seats_per_region(self):
+        # Return the seats per region
+        return self.seats_per_region
+    
+    def get_total_district_seats(self):
+        # Return the total number of district seats
+        return sum(self.district_mandates.values())
