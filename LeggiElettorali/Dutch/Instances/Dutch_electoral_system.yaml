@@ -1,5 +1,5 @@
 name: "Dutch electoral system on Italian data"
 data:
   vote_data_csv: voti_liste.csv
-  parties : parties.json
-  
+  parties: parties.json
+  colors: party_colors.json

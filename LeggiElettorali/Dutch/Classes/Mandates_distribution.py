@@ -12,7 +12,7 @@ class Mandates_distribution:
         current_directory_path = os.path.dirname(__file__)
 
         self.vote_data = self.get_data(current_directory_path +"/../Data/" + instance["data"]["vote_data_csv"])
-        self.parties = self.get_parites(current_directory_path + "/../Data/" + instance["data"]["parties"])
+        self.parties = self.get_parties(current_directory_path + "/../Data/" + instance["data"]["parties"])
         self.mandate_distribution = self.get_mandate_distribution(self.vote_data, self.parties)
         self.print_dict_by_value(self.mandate_distribution)
 
@@ -36,7 +36,7 @@ class Mandates_distribution:
                 votes_for_party[party] = vote   
         return votes_for_party
     
-    def get_parites(self, file_path):
+    def get_parties(self, file_path):
         # reads json file ansd intializes the mandates dictionary   
         with open(file_path, 'r') as file:
             data = json.load(file)
@@ -69,9 +69,9 @@ class Mandates_distribution:
             party_with_highest_votes_per_mandate = max(votes_per_mandate, key=votes_per_mandate.get)
             parties_suitable[party_with_highest_votes_per_mandate] += 1
             mandates_left -= 1
-            print(f'{party_with_highest_votes_per_mandate} got an additional mandate')
-            print(f'{mandates_left} mandates left to assign')
-            print()    
+            # print(f'{party_with_highest_votes_per_mandate} got an additional mandate')
+            # print(f'{mandates_left} mandates left to assign')
+            # print()    
         # updating the mandates dictionary to include the new mandates, (the old mandates are still there)
         for party, mandate in parties_suitable.items():
             mandates_distribution[party] = mandate            
