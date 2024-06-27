@@ -16,5 +16,7 @@ for f in os.scandir(instance_directory_path):
 
 results = mandates.total_party_mandates
 visualizer = Visualize(results, instance)
-visualizer.show_dot_chart()
+#visualizer.show_dot_chart()
+visualizer.show_circular_bar_plot()
 # visualizer.show_diagrams()
+
