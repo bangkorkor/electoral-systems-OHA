@@ -2,12 +2,14 @@ import csv
 import os
 
 class DistrictMandates:
+    TOTAL_MANDATES = 73
+
     def __init__(self, instance):
         # Initialize the necessary data from the given instance
         current_directory_path = os.path.dirname(__file__)
         self.regions_data = self.load_regions_data(os.path.join(current_directory_path, "../Data/", instance["data"]["size_csv"]))
         self.number_of_regions = len(self.regions_data)
-        self.total_mandates = 605 - self.number_of_regions  # Total mandates excluding one adjustment mandate per region
+        self.total_mandates = self.TOTAL_MANDATES - self.number_of_regions  # Total mandates excluding one adjustment mandate per region
         self.seats_per_region = self.calculate_seats_per_region()
         self.district_mandates = self.calculate_district_mandates()
 
@@ -65,3 +67,7 @@ class DistrictMandates:
     def get_total_district_seats(self):
         # Return the total number of district seats
         return sum(self.district_mandates.values())
+
+    @classmethod
+    def get_total_mandates(cls):
+        return cls.TOTAL_MANDATES

@@ -10,7 +10,7 @@ class MandatesDistribution:
 
         self.vote_data = self.adjustment_mandates.vote_data
         self.total_district_seats = self.district_mandates.get_total_district_seats()
-        self.total_mandates = 605  # Total mandates
+        self.total_mandates = DistrictMandates.TOTAL_MANDATES  # Total mandates
         self.total_votes_dict = self.calculate_total_votes()
         self.total_votes = sum(self.total_votes_dict.values())  # Sum of all votes
         self.qualifying_threshold = 0.04 * self.total_votes  # Threshold to qualify for adjustment mandates
