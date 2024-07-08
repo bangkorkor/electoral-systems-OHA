@@ -89,6 +89,10 @@ def run_simulation(path):
         Commons.show_chart(final_result) # visualizzazione grafica da mattarellum.py
     if 'Binomiale' in path:
         Commons.show_binomiale_chart(final_result)
+    if 'Norwegian' in path:
+        os.system('python LeggiElettorali/Norwegian')
+    if 'Dutch' in path:
+        os.system('python LeggiElettorali/Dutch')
 
 
     return final_result
