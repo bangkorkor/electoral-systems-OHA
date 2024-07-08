@@ -4,7 +4,7 @@ import json
 import os
 
 
-NUM_MANDATES = 605  # Number of mandates
+NUM_MANDATES = 73  # Number of mandates
 
 class Mandates_distribution:
 
