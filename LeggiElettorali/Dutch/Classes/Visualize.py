@@ -103,7 +103,7 @@ class Visualize:
 
         # Set the coordinates limits
         upperLimit = 250
-        lowerLimit = 100
+        lowerLimit = 50
 
         # Compute max and min in the dataset
         max_value = max(sorted_seats)
@@ -142,7 +142,7 @@ class Visualize:
             color=colors)
 
         # little space between the bar and the label
-        labelPadding = 15
+        labelPadding = 10
 
         # Add labels
         for bar, angle, height, label, seats in zip(bars,angles, heights, sorted_parties, sorted_seats):
@@ -178,7 +178,9 @@ class Visualize:
                 rotation_mode="anchor") 
 
         ax.set_title("The Dutch system applied on the 2019 Italian election results", pad=10, fontsize=20, y=1.05)
-        plt.tight_layout(pad=3)
+        plt.tight_layout(pad=100)
+        plt.subplots_adjust(bottom=0.2)  # Adjusted top and bottom to move the plot up
+
         plt.show()
 
 

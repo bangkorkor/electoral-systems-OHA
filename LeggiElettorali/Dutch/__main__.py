@@ -17,8 +17,7 @@ results = mandates.mandate_distribution
 
 visualizer = Visualize(results, instance)
 visualizer.show_dot_chart()
-#visualizer.show_circular_bar_plot()
-# visualizer.show_diagrams()
+visualizer.show_circular_bar_plot()
 
 
 

@@ -75,7 +75,7 @@ class Visualize:
         ax2 = poli_sci_kit.plot.parliament(
             allocations=sorted_seats,
             labels=parties,
-            colors=colors2,
+            colors=colors,
             style="rectangle",
             num_rows=9,
             marker_size=300,
@@ -117,7 +117,7 @@ class Visualize:
 
         # Set the coordinates limits
         upperLimit = 250
-        lowerLimit = 100
+        lowerLimit = 50
 
         # Compute max and min in the dataset
         max_value = max(sorted_seats)
@@ -128,7 +128,7 @@ class Visualize:
         slope = (max_value - lowerLimit) / max_value
         print("Her kommer slopene: ", slope)
         sorted_seats = np.array(sorted_seats)
-        heights = slope * sorted_seats + np.log(sorted_seats+1) * 60
+        heights = (slope * sorted_seats + np.log(sorted_seats+1) * 60) * 0.8
         print("Her kommer høydene: ", heights)
 
         # Compute the width of each bar. In total we have 2*Pi = 360°
@@ -156,7 +156,7 @@ class Visualize:
             color=colors)
 
         # little space between the bar and the label
-        labelPadding = 15
+        labelPadding = 10
 
         # Add labels
         for bar, angle, height, label, seats in zip(bars,angles, heights, sorted_parties, sorted_seats):
@@ -191,7 +191,8 @@ class Visualize:
                 rotation=rotation, 
                 rotation_mode="anchor") 
 
-        ax.set_title("The Norwegian system applied on the 2019 Italian election results", pad=10, fontsize=20, y=1.05)
+        ax.set_title("The Norwegian system applied on the 2019 Italian election results", pad=10, fontsize=20, y=1.1)
+        plt.subplots_adjust(left=0.1, right=0.9, top=0.85, bottom=0.15)
         plt.tight_layout(pad=3)
         plt.show()
 
