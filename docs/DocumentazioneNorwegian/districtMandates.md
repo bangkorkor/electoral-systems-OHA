@@ -17,8 +17,8 @@ def calculate_seats_per_region(self):
 ```
 
 This is the function that actually calculates the district mandates, based on the Sainte-Laguë method.
-It returns the number of seats each region is allocated in the parliament.
+It returns the number of seats each region is allocated in the parliament, but not which parties get a seat.
 
 ## Other functions
 
-There are also other functions, but these are mainly getters, to be able to fetch the variables later in the other files.
+There are also other functions, but these are mainly getters, that are used to fetch the variables later in the other files.
