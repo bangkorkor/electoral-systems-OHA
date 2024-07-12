@@ -43,6 +43,7 @@ class Visualize:
         sorted_mandates_list = sorted(parties_that_have_a_seat.items(), key=lambda item: item[1])
         sorted_parties = [party for party, seats in sorted_mandates_list]
         sorted_seats = [seats for party, seats in sorted_mandates_list]
+        print("Her kommer d: ", sorted_parties)
 
 
         # COLORS, keep only parties that have mandates
@@ -59,8 +60,8 @@ class Visualize:
             labels=sorted_parties,
             colors=colors,
             style="rectangle",
-            num_rows=23,
-            marker_size=125,
+            num_rows=9,
+            marker_size=300,
             speaker=False,
             axis=ax2,
             dsat = 0.8

@@ -68,10 +68,7 @@ class Mandates_distribution:
                     votes_per_mandate[party] = vote / (parties_suitable[party])
             party_with_highest_votes_per_mandate = max(votes_per_mandate, key=votes_per_mandate.get)
             parties_suitable[party_with_highest_votes_per_mandate] += 1
-            mandates_left -= 1
-            # print(f'{party_with_highest_votes_per_mandate} got an additional mandate')
-            # print(f'{mandates_left} mandates left to assign')
-            # print()    
+            mandates_left -= 1   
         # updating the mandates dictionary to include the new mandates, (the old mandates are still there)
         for party, mandate in parties_suitable.items():
             mandates_distribution[party] = mandate            

@@ -62,11 +62,11 @@ class Visualize:
             "#3357FF",  # Blue
             "#F0FF33",  # Yellow
             "#FF33F0",  # Pink
-            "#33FFF0",  # Aqua
-            "#F033FF",  # Purple
-            "#FF8633",  # Orange
-            "#86FF33",  # Light Green
-            "#3386FF"   # Light Blue
+            #"#33FFF0",  # Aqua
+            #"#F033FF",  # Purple
+            #"#FF8633",  # Orange
+            #"#86FF33",  # Light Green
+           # "#3386FF"   # Light Blue
 ]
         
 
@@ -77,8 +77,8 @@ class Visualize:
             labels=parties,
             colors=colors2,
             style="rectangle",
-            num_rows=23,
-            marker_size=120,
+            num_rows=9,
+            marker_size=300,
             speaker=False,
             axis=ax2,
 )
