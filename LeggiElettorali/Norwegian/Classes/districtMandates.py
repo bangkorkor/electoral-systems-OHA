@@ -13,6 +13,8 @@ class DistrictMandates:
         self.seats_per_region = self.calculate_seats_per_region()
         self.district_mandates = self.calculate_district_mandates()
 
+
+    #Reading the size.csv containing the data about the different regions, their size, and their population
     def load_regions_data(self, file_path):
         # Load regions data from the CSV file
         regions_data = []
