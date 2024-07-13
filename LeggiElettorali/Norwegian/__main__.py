@@ -14,8 +14,15 @@ for f in os.scandir(instance_directory_path):
             mandates = MandatesDistribution(instance)
             mandates.print_results()
 
+#Stores the mandate distribution in a variable called results, which can then be used for plotting
 results = mandates.total_party_mandates
+
+#Instantiates an instance of Visualize
 visualizer = Visualize(results, instance)
+
+#Plots the dot chart
 visualizer.show_dot_chart()
+
+#Plots the circular bar plot
 visualizer.show_circular_bar_plot()
 

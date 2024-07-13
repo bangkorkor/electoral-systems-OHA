@@ -9,3 +9,4 @@ requires.io
 inspect.it
 plotly
 multiprocess
+poli-sci-kit
